@@ -1,0 +1,45 @@
+PROCEDURE permut(VAR x, y: INTEGER)
+VAR
+    temp:INTEGER;
+BEGIN
+    temp:=x;
+    x:=y;
+    y:=temp;
+END
+
+//function of permut 
+FUNCTION permut(VAR x:INTEGER, VAR y:INTEGER) : INTEGER
+VAR
+    temp:INTEGER;
+BEGIN
+    IF (x <> 0 OR y <>0) THEN
+        temp:=x;
+        x:=y;
+        y:=temp;
+    RETURN temp ;
+    ELSE
+        RETURN -1;
+    END_IF
+END
+
+/*
+Objective
+
+Insertion sort is a simple sorting algorithm that works the way we sort playing cards in our hands. Each time we take a new card we put it in the right place in our hand. 
+Instructions
+Each time work only with the first i-1 element from of the array
+Pick element arr[i] and insert it into sorted sequence in the array from 0 to i-1.
+*/
+ALGORITHM Sort
+VAR
+    arr:ARRAY_OF INTEGER[1000];
+    i,j:INTEGER;
+BEGIN
+    FOR i FROM 1 TO arr.length-1 STEP 1  DO
+        j:=i;
+        WHILE (j > 0 AND arr[j] < arr[j-1]) DO
+            permut(arr[j-1], arr[j]);
+            j:=j-1;
+        END_WHILE
+    END_FOR
+END
